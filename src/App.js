@@ -232,7 +232,7 @@ function MovieSummery({ watched }) {
 
 function WatchedMoviesList({ watched }) {
   return (
-    <ul className="list">
+    <ul className="list" style={{cursor : "pointer"}}>
       {watched.map((movie) => (
         <WatchMovie key={movie.imdbID} movie={movie} />
       ))}
