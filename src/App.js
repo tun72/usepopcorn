@@ -63,8 +63,9 @@ export default function App() {
   useEffect(function () {
     async function fetchData() {
       try {
+        
         setIsloading(true);
-        setIsError("")
+        console.log(query);
         const search = await fetch(
           `https://www.omdbapi.com/?apikey=${apiKey}&s=${query}`
         );
@@ -73,7 +74,7 @@ export default function App() {
           throw new Error("Error can't fetch data");
         }
         const data = await search.json();
-
+        console.log(data);
         if (data.Response === "False") {
           throw new Error("Movie not found!");
         }
@@ -85,12 +86,17 @@ export default function App() {
         setIsError(err.message);
       } finally {
         setIsloading(false);
+       
       }
     }
     if(query.length < 4) {
-      setMovies(tempMovieData);
+      setMovies([]);
       setIsError("");
       return
+    }
+
+    if(setMovies.length) {
+      setIsError("");
     }
     fetchData();
   }, [query]);
@@ -286,6 +292,23 @@ function WatchedMoviesList({ watched, onBack }) {
     </ul></>
     
   );
+}
+
+function MovieDetails({}) {
+  const [movie, setMovie] = useState({});
+  
+  const {
+    Title: title,
+    Year: year,
+    Poster: poster,
+    Runtime: runtime,
+    imdbRating,
+    Plot: plot,
+    Released: released,
+    Actors: actors,
+    Director: director,
+    Genre: genre,
+  } = movie;
 }
 
 function WatchMovie({ movie }) {
