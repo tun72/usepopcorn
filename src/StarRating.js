@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const styleRating = {
   display: "flex",
-  gap: "5px",
+  gap: "1px",
   alignItems: "center",
 };
 
@@ -16,6 +16,7 @@ StarRating.prototypes = {
   className : PropTypes.string,
   onSet: PropTypes.func
 }
+
 export default function StarRating({
   maxRating = 5,
   color = "#fcc419",
